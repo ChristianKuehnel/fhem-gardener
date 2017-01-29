@@ -149,7 +149,9 @@ sub check_device{
 	
 	#check the current value
     foreach my $reading (("moisture", "battery")) {
-        check_single_reading($hash,$device,$reading);
+        my $result = check_single_reading($hash,$device,$reading);
+        $verdict &= $result->{verdict};
+        push(@messages, $result->{message});
     }
     
     #check the history 
