@@ -179,8 +179,8 @@ sub check_single_reading{
         
     #if (!defined $value or !defined $age) {
     if (!defined $value ) {
-    	$verdict = 1;
-    	$message = "  could not read $reading!"; 
+    	$verdict = 0;
+    	$message = "  could not read reading $reading!"; 
     #} elsif ( $age > $max_age ) {
     #    $verdict = 0;
     #    $message = "  $reading is too old: $age minutes, last value was $value $unit";    

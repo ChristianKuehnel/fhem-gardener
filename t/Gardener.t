@@ -29,6 +29,7 @@ sub test_Gardener {
     test_check_reading_history_low();
     test_send_email();
     test_age_in_minutes();
+    test_check_single_reading();
     
     done_testing();
 }
@@ -51,8 +52,11 @@ sub test_check {
     
 	prepare_database($device,$dblog,$hash->{NAME} );
     Gardener::check($hash);
-    print(ReadingsVal("gardener","status_message",undef)."\n");
     is(ReadingsVal("gardener","STATE",undef),"good");
+    my $message = ReadingsVal("gardener","status_message",undef);
+    like($message, qr/moisture/);
+    like($message, qr/conductivity/);
+    like($message, qr/battery/);
 }
 
 sub test_check_no_devices {
@@ -188,6 +192,29 @@ sub test_age_in_minutes {
     my$age = Gardener::age_in_minutes($device,$reading);
 
 	is($age, 10);
+}
+
+sub test_check_single_reading {
+    note( "test case: ".(caller(0))[3] );   
+    main::reset_mocks();
+	my $hash = {};
+	my $device = "ja_mei";
+	my $reading = "battery";
+	
+	
+    my $result = Gardener::check_single_reading($hash,$device,$reading);
+    ok(!$result->{verdict});
+    like($result->{message},qr/reading/);
+	
+    add_reading_time($device, $reading, 10, "2017-01-26_08:00:00");
+    $result = Gardener::check_single_reading($hash,$device,$reading);
+    ok(!$result->{verdict});
+    like($result->{message},qr/too low/);
+    
+    add_reading_time($device, $reading, 80, "2017-01-26_08:00:00");
+    $result = Gardener::check_single_reading($hash,$device,$reading);
+    ok($result->{verdict});
+    like($result->{message},qr/good/);    
 }
 
 

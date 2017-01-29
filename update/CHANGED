@@ -1,3 +1,9 @@
+commit b561fd1234eb62d97c0d6a7b31f1cbd31102847f
+Author: Christian Kühnel <christian.kuehnel@gmail.com>
+Date:   Sun Jan 29 19:06:01 2017 +0100
+
+    added check results to status message and email
+
 commit f4a5f021c0d6ff45a6c1fe6f644fbf423e1dcf9e
 Author: Christian Kühnel <christian.kuehnel@gmail.com>
 Date:   Sun Jan 29 19:03:22 2017 +0100
@@ -52,9 +58,3 @@ Author: Christian Kühnel <christian.kuehnel@gmail.com>
 Date:   Sun Jan 29 11:59:43 2017 +0100
 
     increased test coverage
-
-commit 76bdae9a00a23d6a8d2967e958f36a17b448866a
-Author: Christian Kühnel <christian.kuehnel@gmail.com>
-Date:   Sun Jan 29 11:31:55 2017 +0100
-
-    removed print statement to fix tests
