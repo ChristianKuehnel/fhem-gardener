@@ -58,6 +58,4 @@ After that you can configure the modules with several attributes (see fhem comma
 
 The Xiaomi MI plant sensors are using Bluetooth Low Energy have have a range of about 5 meters.
 So if your home automation server is further away than that, you will need some proxy for this.
-I'm using a small Linux computer (e.g. C.H.I.P oder Raspberry Pi) to read the data from the sensors 
-via Bluetooth Low Engergy and forward them to the fhem server via MQTT.
-Once I've cleaned up the code, I will also upload it to github.
+For this use case I implemented the [plantgateway](https://github.com/ChristianKuehnel/plantgateway).
